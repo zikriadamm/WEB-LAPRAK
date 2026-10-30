@@ -1,0 +1,35 @@
+# Secrets & Environment Variables (ABSOLUTE IGNORE - NEVER COMMIT)
+.env
+.env*
+*.env
+*.env.*
+**/.env*
+backend/.env
+backend/.env*
+frontend/.env
+frontend/.env*
+!.env.example
+!**/.env.example
+
+# SQLite Database & User Credentials
+*.db
+*.sqlite
+*.sqlite3
+backend/data/
+data/
+
+# Uploads & Temp
+uploads/
+backend/uploads/
+inspect_temp/
+*.docx
+
+# Dependencies & Build
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+__pycache__/
+backend/__pycache__/
+*.pyc
+.impeccable/
