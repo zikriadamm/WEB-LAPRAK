@@ -106,8 +106,8 @@ def extract_report_from_pdf_content(
     if not key:
         raise ValueError("Gemini API Key tidak ditemukan. Harap masukkan API Key di web atau konfigurasikan GEMINI_API_KEY di file .env.")
 
-    nama = student_info.get("name", "MOH. YUSFI LAKHAFIDUN")
-    nim = student_info.get("nim", "F5512520089")
+    nama = student_info.get("name", "")
+    nim = student_info.get("nim", "")
     kelas = student_info.get("class", "Informatika C")
     mod_num = student_info.get("module_number", "")
     matkul = student_info.get("course", "Sistem Informasi Geografis")

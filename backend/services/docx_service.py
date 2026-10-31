@@ -24,7 +24,7 @@ def generate_docx_report(report_data: dict, images_map: dict = None) -> str:
     :return: path absolut file .docx yang siap diunduh
     """
     mod_num = report_data.get("module_number", 1)
-    nim = report_data.get("student_nim", "f5512520089").lower()
+    nim = report_data.get("student_nim", "mahasiswa").lower()
     
     # Format nama file: <nim>_prak_gis_<mod_num>.docx
     safe_nim = "".join(c for c in nim if c.isalnum() or c in ("_", "-"))

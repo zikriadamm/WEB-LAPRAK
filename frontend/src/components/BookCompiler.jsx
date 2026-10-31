@@ -16,8 +16,8 @@ export default function BookCompiler({ initialStudentInfo = {} }) {
   const [metadata, setMetadata] = useState({
     course_name: initialStudentInfo.course || 'Sistem Informasi Geografis',
     title: '',
-    student_name: initialStudentInfo.name || 'MOH. YUSFI LAKHAFIDUN',
-    student_nim: initialStudentInfo.nim || 'F5512520089',
+    student_name: initialStudentInfo.name || '',
+    student_nim: initialStudentInfo.nim || '',
     student_class: initialStudentInfo.class || 'Informatika C',
     institution: 'PROGRAM STUDI S1 TEKNIK INFORMATIKA\nJURUSAN TEKNOLOGI INFORMASI\nFAKULTAS TEKNIK\nUNIVERSITAS TADULAKO',
     academic_year: '2026',

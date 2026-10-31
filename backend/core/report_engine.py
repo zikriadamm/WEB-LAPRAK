@@ -67,8 +67,8 @@ def build_report_document(data: dict, output_path: str = None, template_path: st
         module_num_int = 1
 
     module_title = data.get("module_title", "Laporan Praktikum")
-    nama = data.get("student_name", "MOH. YUSFI LAKHAFIDUN")
-    nim = data.get("student_nim", "F5512520089")
+    nama = data.get("student_name", "")
+    nim = data.get("student_nim", "")
     kelas = data.get("student_class", "Informatika C")
     
     # Format judul Halaman Sampul (Cover)

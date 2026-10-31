@@ -475,8 +475,8 @@ def add_master_cover_page(doc, metadata: dict, min_mod: int, max_mod: int):
     """Membuat Halaman Sampul Utama Pembukuan Akademik."""
     course = metadata.get("course_name", "SISTEM INFORMASI GEOGRAFIS").upper()
     title = metadata.get("title", f"LAPORAN AKHIR PRAKTIKUM\n{course}").upper()
-    name = metadata.get("student_name", "MOH. YUSFI LAKHAFIDUN").upper()
-    nim = metadata.get("student_nim", "F5512520089")
+    name = metadata.get("student_name", "").upper()
+    nim = metadata.get("student_nim", "")
     kelas = metadata.get("student_class", "INFORMATIKA C").upper()
     institution = metadata.get("institution", "PROGRAM STUDI S1 TEKNIK INFORMATIKA\nJURUSAN TEKNOLOGI INFORMASI\nFAKULTAS TEKNIK\nUNIVERSITAS TADULAKO").upper()
     year = metadata.get("academic_year", "2026")

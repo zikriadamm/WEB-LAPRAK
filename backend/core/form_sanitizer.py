@@ -240,8 +240,8 @@ def sanitize_student_info(data: dict) -> dict:
     """
     data = data or {}
     return {
-        "name": sanitize_text(data.get("name", ""), max_len=120) or "MOH. YUSFI LAKHAFIDUN",
-        "nim": sanitize_alphanumeric(data.get("nim", ""), max_len=30, allow_chars="-_./") or "F5512520089",
+        "name": sanitize_text(data.get("name", ""), max_len=120) or "",
+        "nim": sanitize_alphanumeric(data.get("nim", ""), max_len=30, allow_chars="-_./") or "",
         "class": sanitize_text(data.get("class", ""), max_len=50) or "Informatika C",
         "course": sanitize_text(data.get("course", ""), max_len=100) or "Sistem Informasi Geografis",
         "module_number": sanitize_alphanumeric(data.get("module_number", ""), max_len=10)

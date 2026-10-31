@@ -36,8 +36,8 @@ def extract_report_with_groq(
     if not key:
         raise ValueError("Groq API Key tidak ditemukan di environment/backend/.env.")
 
-    nama = student_info.get("name", "MOH. YUSFI LAKHAFIDUN")
-    nim = student_info.get("nim", "F5512520089")
+    nama = student_info.get("name", "")
+    nim = student_info.get("nim", "")
     kelas = student_info.get("class", "Informatika C")
     mod_num = student_info.get("module_number", "")
     matkul = student_info.get("course", "Sistem Informasi Geografis")

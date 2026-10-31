@@ -86,7 +86,7 @@ export async function generateAndDownloadDocx(reportData, imagesMap = {}) {
   if (contentDisposition && contentDisposition.includes('filename=')) {
     filename = contentDisposition.split('filename=')[1].replace(/"/g, '').trim();
   } else {
-    const nim = (reportData.student_nim || 'f5512520089').toLowerCase();
+    const nim = (reportData.student_nim || 'mahasiswa').toLowerCase();
     const mod = reportData.module_number || 1;
     filename = `${nim}_prak_gis_${mod}.docx`;
   }
