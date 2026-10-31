@@ -155,7 +155,11 @@ def handle_400(error):
 
 @app.errorhandler(404)
 def handle_404(error):
-    return jsonify({"error": "Endpoint API tidak ditemukan (404 Not Found)."}), 404
+    return jsonify({
+        "error": "Endpoint API tidak ditemukan (404 Not Found).",
+        "path": request.path,
+        "path_info": request.environ.get("PATH_INFO")
+    }), 404
 
 @app.errorhandler(405)
 def handle_405(error):
