@@ -1,4 +1,5 @@
 {
+  "framework": "vite",
   "buildCommand": "npm --prefix frontend install && npm --prefix frontend run build",
   "outputDirectory": "frontend/dist",
   "headers": [
@@ -30,8 +31,8 @@
       "destination": "/api/index.py?__path=$1"
     },
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
     }
   ]
 }
