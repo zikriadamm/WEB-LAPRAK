@@ -155,10 +155,14 @@ def handle_400(error):
 
 @app.errorhandler(404)
 def handle_404(error):
+    relevant_env = {
+        k: str(v) for k, v in request.environ.items()
+        if any(w in k.upper() for w in ['PATH', 'URI', 'URL', 'MATCH', 'VERCEL', 'ROUTE', 'ORIGINAL'])
+    }
     return jsonify({
         "error": "Endpoint API tidak ditemukan (404 Not Found).",
         "path": request.path,
-        "path_info": request.environ.get("PATH_INFO")
+        "env_matches": relevant_env
     }), 404
 
 @app.errorhandler(405)
