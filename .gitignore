@@ -33,3 +33,6 @@ __pycache__/
 backend/__pycache__/
 *.pyc
 .impeccable/
+
+.vercel
+.env*

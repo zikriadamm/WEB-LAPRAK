@@ -8,7 +8,8 @@ import os
 import json
 import hashlib
 
-CACHE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "cache")
+_base_dir = "/tmp" if os.environ.get("VERCEL") else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CACHE_DIR = os.path.join(_base_dir, "cache")
 os.makedirs(CACHE_DIR, exist_ok=True)
 
 def compute_pdf_hash(file_path: str = None, file_bytes: bytes = None) -> str:

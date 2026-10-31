@@ -7,7 +7,8 @@ import os
 import uuid
 from core.report_engine import build_report_document
 
-UPLOAD_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "uploads")
+_base_dir = "/tmp" if os.environ.get("VERCEL") else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+UPLOAD_DIR = os.path.join(_base_dir, "uploads")
 OUTPUT_DIR = os.path.join(UPLOAD_DIR, "generated_docs")
 IMAGES_DIR = os.path.join(UPLOAD_DIR, "images")
 
