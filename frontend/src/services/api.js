@@ -1,3 +1,20 @@
+
+async function parseJsonResponse(res, fallbackErrMsg) {
+  const contentType = res.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    throw new Error('Server backend belum aktif atau belum terhubung di cloud. Pastikan backend sudah running.');
+  }
+  try {
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || fallbackErrMsg);
+    }
+    return data;
+  } catch (err) {
+    if (err.message.includes('Server backend')) throw err;
+    throw new Error('Gagal memproses data dari backend (Respons tidak valid).');
+  }
+}
 /**
  * api.js
  * Layanan komunikasi frontend ke backend Flask REST API.
@@ -34,11 +51,7 @@ export async function extractReport(pdfFile, studentInfo, apiKey = '') {
     body: formData,
   });
 
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.error || 'Gagal mengekstrak laporan dari PDF');
-  }
-  return data;
+  return await parseJsonResponse(res, 'Gagal mengekstrak laporan dari PDF');
 }
 
 export async function uploadScreenshot(imageFile, placeholderId) {
@@ -51,11 +64,7 @@ export async function uploadScreenshot(imageFile, placeholderId) {
     body: formData,
   });
 
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.error || 'Gagal mengunggah gambar');
-  }
-  return data;
+  return await parseJsonResponse(res, 'Gagal mengunggah gambar');
 }
 
 export async function generateAndDownloadDocx(reportData, imagesMap = {}) {
@@ -107,11 +116,7 @@ export async function inspectModuleDocx(docxFile) {
     body: formData,
   });
 
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.error || 'Gagal membedah modul docx');
-  }
-  return data;
+  return await parseJsonResponse(res, 'Gagal membedah modul docx');
 }
 
 export async function compileAndDownloadBook(files, metadata = {}, modulesMetadata = []) {
