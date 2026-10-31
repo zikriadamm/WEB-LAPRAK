@@ -1,0 +1,13 @@
+.git
+.github
+*.bat
+.impeccable
+MEMORI_PROYEK.md
+AGENTS.MD
+format.md
+backend/data
+uploads
+cache
+Dockerfile
+Procfile
+railway.json

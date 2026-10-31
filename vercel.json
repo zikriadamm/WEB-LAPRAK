@@ -2,6 +2,12 @@
   "framework": "vite",
   "buildCommand": "npm --prefix frontend install && npm --prefix frontend run build",
   "outputDirectory": "frontend/dist",
+  "functions": {
+    "api/index.py": {
+      "includeFiles": "backend/**",
+      "excludeFiles": "{frontend/**,node_modules/**,frontend/node_modules/**}"
+    }
+  },
   "headers": [
     {
       "source": "/(.*)",
