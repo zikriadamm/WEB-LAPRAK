@@ -1,3 +1,13 @@
+---
+title: Web Laprak API
+emoji: 📑
+colorFrom: indigo
+colorTo: blue
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Web Laprak Generator ⚡
 
 Aplikasi web modern untuk otomatisasi pembuatan dokumen **Laporan Praktikum Microsoft Word (.docx)** berstandar akademik tinggi dari berkas PDF modul asisten dosen (asdos).

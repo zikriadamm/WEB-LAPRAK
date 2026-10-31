@@ -210,7 +210,7 @@ def add_security_headers(response):
         "img-src 'self' data: blob: https:; "
         "font-src 'self' data: https:; "
         "connect-src 'self' https: http://127.0.0.1:* http://localhost:*; "
-        "frame-ancestors 'none'; "
+        "frame-ancestors 'self' https://huggingface.co https://*.hf.space; "
         "object-src 'none'; "
         "base-uri 'self'; "
         "form-action 'self';"
@@ -218,6 +218,16 @@ def add_security_headers(response):
     # Hapus duplikasi header Server agar hanya memuat WebLaprak bersih
     response.headers.pop("Server", None)
     return response
+
+@app.route("/", methods=["GET"])
+def index():
+    """Halaman pembuka API backend untuk pengecekan status awal di cloud."""
+    return jsonify({
+        "status": "online",
+        "service": "Web Laprak Generator API",
+        "engine": "Flask + Gunicorn + Multi-Model AI",
+        "health": "/api/health"
+    })
 
 @app.route("/api/health", methods=["GET"])
 def health_check():
