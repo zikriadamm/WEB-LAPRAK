@@ -7,7 +7,18 @@ dilengkapi kecerdasan OCR Multimodal otomatis berbasis Google Gemini Vision untu
 import os
 import base64
 import requests
-import pymupdf as fitz
+
+try:
+    import pypdf
+    HAS_PYPDF = True
+except ImportError:
+    HAS_PYPDF = False
+
+try:
+    import pymupdf as fitz
+    HAS_FITZ = True
+except ImportError:
+    HAS_FITZ = False
 
 def ocr_pdf_with_gemini(pdf_path: str, api_key: str = None) -> str:
     """
@@ -96,22 +107,35 @@ def extract_text_from_pdf(pdf_path: str, api_key: str = None) -> dict:
     if not os.path.exists(pdf_path):
         raise FileNotFoundError(f"Berkas PDF tidak ditemukan: {pdf_path}")
 
-    doc = fitz.open(pdf_path)
     pages_data = []
     full_text_list = []
 
-    for page_num in range(len(doc)):
-        page = doc[page_num]
-        text = page.get_text("text").strip()
-        pages_data.append({
-            "page_number": page_num + 1,
-            "text": text
-        })
-        if text:
-            full_text_list.append(f"--- [Halaman {page_num + 1}] ---\n{text}")
-
-    total_pages = len(pages_data)
-    doc.close()
+    if HAS_PYPDF:
+        reader = pypdf.PdfReader(pdf_path)
+        for page_num, page in enumerate(reader.pages):
+            text = (page.extract_text() or "").strip()
+            pages_data.append({
+                "page_number": page_num + 1,
+                "text": text
+            })
+            if text:
+                full_text_list.append(f"--- [Halaman {page_num + 1}] ---\n{text}")
+        total_pages = len(pages_data)
+    elif HAS_FITZ:
+        doc = fitz.open(pdf_path)
+        for page_num in range(len(doc)):
+            page = doc[page_num]
+            text = page.get_text("text").strip()
+            pages_data.append({
+                "page_number": page_num + 1,
+                "text": text
+            })
+            if text:
+                full_text_list.append(f"--- [Halaman {page_num + 1}] ---\n{text}")
+        total_pages = len(pages_data)
+        doc.close()
+    else:
+        raise ImportError("Tidak ada library PDF reader (pypdf/pymupdf) yang tersedia.")
 
     full_text = "\n\n".join(full_text_list).strip()
 

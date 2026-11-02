@@ -29,12 +29,12 @@
   ],
   "rewrites": [
     {
-      "source": "/api",
-      "destination": "/api/index.py"
-    },
-    {
       "source": "/api/(.*)",
       "destination": "/api/index.py?__path=$1"
+    },
+    {
+      "source": "/api",
+      "destination": "/api/index.py"
     },
     {
       "source": "/((?!api/).*)",
