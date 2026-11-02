@@ -958,7 +958,8 @@ def compile_master_book(
     if not output_path:
         nim = metadata.get("student_nim", "laprak").lower().replace(" ", "_")
         course_clean = metadata.get("course_name", "prak").lower().replace(" ", "_")
-        out_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "uploads", "generated_docs")
+        base_dir = "/tmp" if os.environ.get("VERCEL") else os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        out_dir = os.path.join(base_dir, "uploads", "generated_docs")
         os.makedirs(out_dir, exist_ok=True)
         output_path = os.path.join(out_dir, f"pembukuan_{nim}_{course_clean}.docx")
         
